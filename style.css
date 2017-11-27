@@ -9,7 +9,7 @@
     font-family: open sans;
 }
 
-.image {
+#poster {
     float: left;
     max-width: 300px; 
     margin-left: 25px;
