@@ -1,8 +1,8 @@
 let movieData = require("./data");
-let $ = require("jquery");
+let $ = require('jquery');
 
 function renderMovie(data){
-    $(".infosection h1").text(data.movietitle);
+    $('.infosection h1').text(data.movietitle);
     $(".infosection p").text(data.description);
     $(".poster").attr("src", data.img);
   
