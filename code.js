@@ -1,8 +1,11 @@
 let movieData = require("./data");
+let $ = require("jquery");
 
 function renderMovie(data){
   document.querySelector(".infosection h1").textContent = data.movietitle;
   document.querySelector(".infosection p").textContent = data.description;
+  document.querySelector(".infosection p:nth-of-type(2)").textContent = data.director;
+  document.querySelector(".infosection p:nth-of-type(3)").textContent = data.cast;
   document.querySelector(".poster").setAttribute("src", data.img);
 
   let actorList = "";
@@ -22,7 +25,7 @@ function changeStarRating(rating){
     }
   }
 }
-
+/*
 for(let i=1; i<=5; i++){
   let star = document.getElementById("star" + i);
   star.addEventListener("click", function(){
@@ -30,14 +33,14 @@ for(let i=1; i<=5; i++){
   });
 }
 
-renderMovie(movieData);
-
-
-/*let $ = require("jquery");
+/*
+let $ = require("jquery");
 
 function renderMovie(data){
     $(".infosection h1").text(data.movietitle);
     $(".infosection p").text(data.description);
+    $(".infosection p:nth-of-type(2)").text(data.director);
+    $(".infosection p:nth-of-type(3)").text(data.cast);
     $(".poster").attr("src", data.img);
   
     $(".infosection ul").empty();
@@ -58,6 +61,6 @@ function renderMovie(data){
     let rating = parseInt(star.attr("data-rating-id"));
     changeStarRating(rating);
   });
-  
+  */
 
-  renderMovie(movieData);*/
+  renderMovie(movieData);
