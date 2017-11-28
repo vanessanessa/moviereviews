@@ -30,6 +30,13 @@ for(let i=1; i<=5; i++){
   });
 }
 
+for(let i=1; i<=5; i++){
+  let star = document.getElementById("star" + i);
+  star.addEventListener("mouseenter", function(event){
+    event.target.style = changeStarRating(i);
+  });
+}
+
 renderMovie(movieData);
 
 
