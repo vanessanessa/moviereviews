@@ -1,14 +1,29 @@
-function renderMovie(movie){
-    //rendering logic
-    document.getElementById("movietitle").innerText = movie.movietitle;
-    document.getElementById("description").innerText = movie.description;
-    document.getElementById("poster").src = movie.poster;
+let movieData = require("./data");
+let $ = require("jquery");
 
-    let existingNode = document.getElementById("list");
-    for(var i = 0; i < movie.list.length; i++){
-        let newNode = document.createElement("li");
-        existingNode.appendChild(newNode).innerText = movie.list[i];
+function renderMovie(data){
+    $(".infosection h1").text(data.movietitle);
+    $(".infosection p").text(data.description);
+    $(".poster").attr("src", data.img);
+  
+    $(".infosection ul").empty();
+    for(let i=0; i<data.actors.length; i++){
+      $(".infosection ul").append("<li>" + data.actors[i] + "</li>");
     }
-}
+  }
+  
+  function changeStarRating(rating){
+    $(".filled").removeClass("filled");
+    for(let i=1; i<=rating; i++){
+      $("[data-rating-id=" + i + "]").addClass("filled");
+    }
+  }
+  
+  $(".stars").on("click", "span", function(e){
+    let star = $(e.target);
+    let rating = parseInt(star.attr("data-rating-id"));
+    changeStarRating(rating);
+  });
+  
 
-renderMovie(movieData);
+  renderMovie(movieData);

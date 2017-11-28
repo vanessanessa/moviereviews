@@ -1,0 +1,50 @@
+@color-base1: #ddb203;
+@color-base2: #cccccc;
+
+.main-container {
+    max-width: 500px;
+/*  margin-right: auto;
+    margin-left: auto;*/
+    margin-top: 55px;
+    margin-left: 10px;
+    background-color: #e2e2e2;
+    padding: 30px;
+    border: 1px solid #000;
+    display: flex;
+    flex-direction: row;
+}
+
+h1 {
+    margin-top: -10px;
+}
+
+.infosection {
+    flex-grow: 1;
+}
+
+.poster {
+    float: left;
+    max-width: 200px; 
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+p {
+    font-size: 10px;
+}
+
+ul {
+    font-size: 10px;
+    margin-left: -27px;
+}
+
+.stars .filled {
+    /*Alla de klasser som har förälderklassen .stars och som är .filled*/
+    color: @color-base1;
+}
+
+.stars span {
+    color: @color-base2;
+    user-select: none;
+    cursor: pointer;
+}
