@@ -7,24 +7,25 @@
     <link href="styles.css" rel="stylesheet" type="text/css">
     <title>Document</title>
 </head>
-<body>
-    <div class="main-container">
+<body ng-app="reviewApp" ng-cloak>
+    <div ng-controller="reviewController" class="main-container">
         <div>
-            <img class="poster" src="">
+            <img ng-src="{{movie.img}}" class="poster"/>
         </div>
         <div class="infosection">
-            <h1></h1>
+            <h1>{{movie.movietitle}}</h1>
             <div class="stars">
-                    <span data-rating-id="1">&#9733;</span>
-                    <span data-rating-id="2">&#9733;</span>
-                    <span data-rating-id="3">&#9733;</span>
-                    <span data-rating-id="4">&#9733;</span>
-                    <span data-rating-id="5">&#9733;</span>
+                    <span ng-class="{filled: rating >= 1}" ng-click="changeStarRating(1)">&#9733;</span>
+                    <span ng-class="{filled: rating >= 2}" ng-click="changeStarRating(2)">&#9733;</span>
+                    <span ng-class="{filled: rating >= 3}" ng-click="changeStarRating(3)">&#9733;</span>
+                    <span ng-class="{filled: rating >= 4}" ng-click="changeStarRating(4)">&#9733;</span>
+                    <span ng-class="{filled: rating >= 5}" ng-click="changeStarRating(5)">&#9733;</span>                    
             </div>
-            <p></p>
-            <p></p>
-            <p></p>
+            <p>{{movie.description}}</p>
+            <p>{{movie.director}}</p>
+            <p>{{movie.cast}}</p>
             <ul>
+                <li ng-repeat="item in list">{{item}}</li>
             </ul>
         </div>
     </div>
