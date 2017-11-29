@@ -7,28 +7,9 @@
     <link href="styles.css" rel="stylesheet" type="text/css">
     <title>Document</title>
 </head>
-<body ng-app="reviewApp" ng-cloak>
-    <div class="main-container" ng-controller="reviewController as ctrl">
-        <div>
-            <img ng-src="{{ctrl.movie.img}}" class="poster"/>
-        </div>
-        <div class="infosection">
-            <h1>{{ctrl.movie.movietitle}}</h1>
-            <div class="stars">
-                    <span ng-class="{filled: ctrl.rating >= 1}" ng-click="ctrl.changeStarRating(1)">&#9733;</span>
-                    <span ng-class="{filled: ctrl.rating >= 2}" ng-click="ctrl.changeStarRating(2)">&#9733;</span>
-                    <span ng-class="{filled: ctrl.rating >= 3}" ng-click="ctrl.changeStarRating(3)">&#9733;</span>
-                    <span ng-class="{filled: ctrl.rating >= 4}" ng-click="ctrl.changeStarRating(4)">&#9733;</span>
-                    <span ng-class="{filled: ctrl.rating >= 5}" ng-click="ctrl.changeStarRating(5)">&#9733;</span>                    
-            </div>
-            <p>{{ctrl.movie.description}}</p>
-            <p>{{ctrl.movie.director}}</p>
-            <p>{{ctrl.movie.cast}}</p>
-            <ul>
-                <li ng-repeat="actor in ctrl.movie.actors">{{actor}}</li>
-            </ul>
-        </div>
-    </div>
+<body ng-app="reviewApp" ng-controller="appController as appCtrl">
+    <review movie="appCtrl.movie1"></review>
+    <review movie="appCtrl.movie2"></review>
     <script src="bundle.js"></script>
 </body>
 </html>

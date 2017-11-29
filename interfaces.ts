@@ -1,6 +1,6 @@
 export type Review = {
-    movietitle: string;
-    img: string;
+    title: string;
+    imgUrl: string;
     description: string;
     director: string;
     cast: string;

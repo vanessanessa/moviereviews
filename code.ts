@@ -1,129 +1,49 @@
 import * as angular from "angular";
-import { movieData } from "./data";
-const app = angular.module("reviewApp", []);  // dependencies innanför []
-// in the controller we can attach data to the scope, which can be accessed in the template, html.
-app.controller("reviewController", function() {
-// $scope.message = "Hello from Angular!";
-  this.movie = movieData; // from data.ts
-  this.rating = 0;
-  this.changeStarRating = (newRating) => {
-    this.rating = newRating;
-  };
-});
-/*
-jQuery
-import * as $ from "jquery";
-import { movieData } from "./data";
+import { movieData1, movieData2 } from "./data";
 import { Review } from "./interfaces";
 
-function renderMovie(data: Review) {
-  {
-    $(".infosection h1").text(data.movietitle);
-    $(".infosection p").text(data.description);
-    $(".infosection p:nth-of-type(2)").text(data.director);
-    $(".infosection p:nth-of-type(3)").text(data.cast);
-    $(".poster").attr("src", data.img);
-    $(".infosection ul").empty();
-    for (let i = 0; i < data.actors.length; i++) {
-      $(".infosection ul").append("<li>" + data.actors[i] + "</li>");
-    }
-  }
-}
-let rating;
+const app = angular.module("reviewApp", []);  // dependencies innanför []
 
-function mouseEnter(hover) {
-  $(".filled").removeClass("filled");
-  for (let i = 0; i <= hover; i++) {
-    $("[data-rating-id=" + i + "]").addClass("filled");
-  }
-}
-$(".stars").on("mouseenter", "span", (e) => {
-  const star = $(e.target);
-  const hover = parseInt(star.attr("data-rating-id"));
-  mouseEnter(hover);
+// in the controller we can attach data to the scope, which can be accessed in the template, html.
+app.controller("appController", function() {
+  // $scope.message = "Hello from Angular!";
+  this.movie1 = movieData1;
+  this.movie2 = movieData2;
 });
 
-function changeStarRating(ratings) {
-  $(".filled").removeClass("filled");
-  for (let i = 0; i <= rating; i++) {
-    $("[data-rating-id=" + i + "]").addClass("filled");
-  }
-}
-
-$(".stars").on("click", "span", (e) => {
-  const star = $(e.target);
-  rating = parseInt(star.attr("data-rating-id"));
-  changeStarRating(rating);
+app.component("review", {
+  bindings: {
+    movie: "<",
+  },
+  controller: class ReviewComponent {
+    public rating = 0;
+    public movie: Review;
+    public changeStarRating(newRating) {
+      this.rating = newRating;
+    }
+  },
+  controllerAs: "reviewCtrl",
+  template: `
+    <div class="main-container">
+      <div>
+          <img class="poster" ng-src="{{reviewCtrl.movie.imgUrl}}">
+      </div>
+      <div class="infosection">
+          <h1>{{reviewCtrl.movie.title}}</h1>
+          <div class="stars">
+            <!-- the stars can be done with ng-repeat instead! :) -->
+            <span
+              ng-repeat="star in [1,2,3,4,5]"
+              ng-class="{filled: reviewCtrl.rating >= star}"
+              ng-click="reviewCtrl.changeStarRating(star)">&#9733;</span>
+          </div>
+          <p>{{reviewCtrl.movie.description}}</p>
+          <p>{{reviewCtrl.movie.director}}</p>
+          <p>{{reviewCtrl.movie.cast}}</p>
+          <ul>
+            <li ng-repeat="actor in reviewCtrl.movie.actors">{{actor}}</li>
+          </ul>
+      </div>
+    </div>
+  `
 });
-
-renderMovie(movieData);
-
-/*
-JavaScript
-function renderMovie(data){
-  document.querySelector(".infosection h1").textContent = data.movietitle;
-  document.querySelector(".infosection p").textContent = data.description;
-  document.querySelector(".infosection p:nth-of-type(2)").textContent = data.director;
-  document.querySelector(".infosection p:nth-of-type(3)").textContent = data.cast;
-  document.querySelector(".poster").setAttribute("src", data.img);
-
-  let actorList = "";
-  for(let i=0; i<data.actors.length; i++){
-    actorList += "<li>" + data.actors[i] + "</li>";
-  }
-  document.querySelector(".infosection ul").innerHTML = actorList;
-}
-
-function changeStarRating(rating){
-  for(let i=1; i<=5; i++){
-    let star = document.getElementById("star" + i);
-    if (i <= rating){
-      star.classList.add("filled");
-    } else {
-      star.classList.remove("filled");
-    }
-  }
-}
-
-for(let i=1; i<=5; i++){
-  let star = document.getElementById("star" + i);
-  star.addEventListener("click", function(){
-    changeStarRating(i);
-  });
-}
-
-function mouseOver(rating){
-  for(let i=1; i<=5; i++){
-    let star = document.getElementById("star" + i);
-    if(i <= rating){
-      star.classList.add("filled");
-    } else {
-      star.classList.remove("filled");
-    }
-  }
-}
-
-for(let i=1; i<=5; i++){
-  let star = document.getElementById("star" + i);
-  star.addEventListener("mouseover", function(){
-    mouseOver(i);
-  });
-}
-
-/*function mouseOut(hover){
-  for(let i=1; i<=5; i++){
-    let star = document.getElementById("star" + i);
-    if(i <= hover){
-      star.classList.add("filled");
-    } else {
-      star.classList.remove("filled");
-    }
-  }
-}*/
-
-/*for(let i=1; i<=5; i++){
-  let star = document.getElementById("star" + i);
-  star.addEventListener("mouseout", function(){
-    mouseOut(i);
-  });
-}*/
