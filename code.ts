@@ -1,15 +1,13 @@
 import * as angular from "angular";
 import { movieData } from "./data";
-import { Review } from "./interfaces";
 const app = angular.module("reviewApp", []);  // dependencies innanför []
 // in the controller we can attach data to the scope, which can be accessed in the template, html.
-app.controller("reviewController", ($scope) => {
+app.controller("reviewController", function() {
 // $scope.message = "Hello from Angular!";
-  $scope.movie = movieData; // from data.ts
-  $scope.list = ["Uma Thurman", "David Carradine", "Shin'ichi Chiba"];
-  $scope.rating = 0;
-  $scope.changeStarRating = (newRating) => {
-    $scope.rating = newRating;
+  this.movie = movieData; // from data.ts
+  this.rating = 0;
+  this.changeStarRating = (newRating) => {
+    this.rating = newRating;
   };
 });
 /*

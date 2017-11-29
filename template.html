@@ -8,24 +8,24 @@
     <title>Document</title>
 </head>
 <body ng-app="reviewApp" ng-cloak>
-    <div ng-controller="reviewController" class="main-container">
+    <div class="main-container" ng-controller="reviewController as ctrl">
         <div>
-            <img ng-src="{{movie.img}}" class="poster"/>
+            <img ng-src="{{ctrl.movie.img}}" class="poster"/>
         </div>
         <div class="infosection">
-            <h1>{{movie.movietitle}}</h1>
+            <h1>{{ctrl.movie.movietitle}}</h1>
             <div class="stars">
-                    <span ng-class="{filled: rating >= 1}" ng-click="changeStarRating(1)">&#9733;</span>
-                    <span ng-class="{filled: rating >= 2}" ng-click="changeStarRating(2)">&#9733;</span>
-                    <span ng-class="{filled: rating >= 3}" ng-click="changeStarRating(3)">&#9733;</span>
-                    <span ng-class="{filled: rating >= 4}" ng-click="changeStarRating(4)">&#9733;</span>
-                    <span ng-class="{filled: rating >= 5}" ng-click="changeStarRating(5)">&#9733;</span>                    
+                    <span ng-class="{filled: ctrl.rating >= 1}" ng-click="ctrl.changeStarRating(1)">&#9733;</span>
+                    <span ng-class="{filled: ctrl.rating >= 2}" ng-click="ctrl.changeStarRating(2)">&#9733;</span>
+                    <span ng-class="{filled: ctrl.rating >= 3}" ng-click="ctrl.changeStarRating(3)">&#9733;</span>
+                    <span ng-class="{filled: ctrl.rating >= 4}" ng-click="ctrl.changeStarRating(4)">&#9733;</span>
+                    <span ng-class="{filled: ctrl.rating >= 5}" ng-click="ctrl.changeStarRating(5)">&#9733;</span>                    
             </div>
-            <p>{{movie.description}}</p>
-            <p>{{movie.director}}</p>
-            <p>{{movie.cast}}</p>
+            <p>{{ctrl.movie.description}}</p>
+            <p>{{ctrl.movie.director}}</p>
+            <p>{{ctrl.movie.cast}}</p>
             <ul>
-                <li ng-repeat="item in list">{{item}}</li>
+                <li ng-repeat="actor in ctrl.movie.actors">{{actor}}</li>
             </ul>
         </div>
     </div>
